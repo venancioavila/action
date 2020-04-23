@@ -41,7 +41,7 @@ const GpioIcon = ({activeTintColor}: any) => (
 );
 
 const SettingsIcon = ({activeTintColor}: any) => (
-  <Icon color={activeTintColor} size={30} name="cog" />
+  <Icon color={activeTintColor} size={30} name="build" />
 );
 
 const ActionStack = () => {
@@ -137,7 +137,7 @@ const Navigation = () => {
             tabBarIcon: ({color}: any) => (
               <SettingsIcon activeTintColor={color} />
             ),
-            tabBarLabel: () => null,
+            tabBarLabel: 'configurações',
           }}
           name="Settgins"
           component={SettingsStack}
