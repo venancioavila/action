@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import Text from '../commons/Text';
 import theme from '../theme';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Space from './Space';
 import {ActivityIndicator} from 'react-native';
+import {remove} from '../services/Storage';
 
 const Wrapper = styled.View`
   display: flex;
@@ -55,7 +56,9 @@ const DhtItem = ({name, gpio, id}: Props) => {
 
   const onRequestDht = async (pin: number) => {};
 
-  const onDelete = async (id: string) => {};
+  const onDelete = async (id: string) => {
+    remove(id);
+  };
 
   useEffect(() => {
     onRequestDht(gpio);

@@ -6,6 +6,7 @@ import theme from '../theme';
 import Button from '../commons/Button';
 import Space from '../commons/Space';
 import Input from './Input';
+import {create} from '../services/Storage';
 
 // @ts-ignore
 const MyModal = styled(Modal)`
@@ -43,7 +44,13 @@ const AddModal = ({
   const [gpio, setGpio] = useState('');
   const [exist, setExist] = useState(false);
 
-  const save = async () => {};
+  const save = async () => {
+    create({
+      name,
+      gpio,
+      type: 'analogic',
+    });
+  };
 
   const onChangeGpio = async (gpio: any) => {};
 
@@ -72,7 +79,7 @@ const AddModal = ({
         <Space height={10} />
         <Input
           value={gpio}
-          onChangeText={(text: string) => onChangeGpio(text)}
+          onChangeText={(text: string) => setGpio(text)}
           keyboardType="numeric"
           label="Gpio number"
           placeholder="17"

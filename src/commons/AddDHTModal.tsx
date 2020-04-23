@@ -6,6 +6,7 @@ import theme from '../theme';
 import Button from './Button';
 import Space from './Space';
 import Input from './Input';
+import {create} from '../services/Storage';
 
 // @ts-ignore
 const MyModal = styled(Modal).attrs({
@@ -46,7 +47,13 @@ const AddModalDHT = ({
   const [is22, setIs22] = useState(false);
   const [exist, setExist] = useState(false);
 
-  const save = async () => {};
+  const save = async () => {
+    create({
+      name,
+      gpio,
+      type: 'dht',
+    });
+  };
 
   const onChangeGpio = async (gpio: any) => {};
 
@@ -75,7 +82,7 @@ const AddModalDHT = ({
         <Space height={10} />
         <Input
           value={gpio}
-          onChangeText={(text: string) => onChangeGpio(text)}
+          onChangeText={(text: string) => setGpio(text)}
           keyboardType="numeric"
           label="Gpio number"
           placeholder="17"

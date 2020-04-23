@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import theme from '../theme';
 import Text from './Text';
-import {StarOutlined, StarFilled, StarTwoTone} from '@ant-design/icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Slider from '@react-native-community/slider';
+import {remove} from '../services/Storage';
 
 const Wrapper = styled.View`
   display: flex;
@@ -50,9 +51,11 @@ interface Props {
 
 const GamePadItem = ({name, gpio, id, isHorizontal}: Props) => {
   const [delet, setDelet] = useState(false);
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(90);
 
-  const onDelete = async (id: string) => {};
+  const onDelete = async (id: string) => {
+    remove(id);
+  };
 
   const addDelet = () => {
     setDelet(true);
@@ -70,6 +73,7 @@ const GamePadItem = ({name, gpio, id, isHorizontal}: Props) => {
         style={{width: '100%'}}
         minimumValue={1}
         maximumValue={180}
+        value={value}
         minimumTrackTintColor={theme.text}
         maximumTrackTintColor={theme.text}
         thumbTintColor={theme.lightBackground}

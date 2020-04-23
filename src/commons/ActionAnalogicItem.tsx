@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import Text from '../commons/Text';
 import theme from '../theme';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Space from './Space';
 import api from '../services/api';
 import Slider from '@react-native-community/slider';
+import {remove} from '../services/Storage';
 
 const Wrapper = styled.View`
   display: flex;
@@ -66,7 +67,9 @@ const ActionItem = ({name, gpio, id}: Props) => {
   const [delet, setDelet] = useState(false);
   const [value, setValue] = useState(0);
 
-  const onDelete = async (id: string) => {};
+  const onDelete = async (id: string) => {
+    remove(id);
+  };
 
   const addDelet = () => {
     setDelet(true);

@@ -11,7 +11,6 @@ const Wrapper = styled.TouchableOpacity`
   width: 45%;
   height: 140px;
   background: ${(p) => p.theme.lightBackground};
-  border-color: ${(p) => p.theme.background};
   border-radius: 7px;
   justify-content: center;
   align-items: center;
