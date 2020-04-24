@@ -15,6 +15,9 @@ import theme from '../theme';
 import {ApolloProvider} from '@apollo/react-hooks';
 import client from '../services/client';
 import {initialState} from '../services/Storage';
+import changeNavigationBarColor, {
+  hideNavigationBar,
+} from 'react-native-navigation-bar-color';
 
 // Screens
 import Settings from '../pages/Settings';
@@ -27,6 +30,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 Icon.loadFont();
+changeNavigationBarColor('#80b3ff', true, true);
 
 const ActionIcon = ({activeTintColor}: any) => (
   <Icon color={activeTintColor} size={30} name="home" />
@@ -111,7 +115,7 @@ const Navigation = () => {
             tabBarIcon: ({color}: any) => (
               <ActionIcon activeTintColor={color} />
             ),
-            tabBarLabel: 'início',
+            tabBarLabel: 'Início',
           }}
           name="Action"
           component={ActionStack}
@@ -119,7 +123,7 @@ const Navigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}: any) => <AddIcon activeTintColor={color} />,
-            tabBarLabel: 'adicionar',
+            tabBarLabel: 'Adicionar',
           }}
           name="Add"
           component={AddActionStack}

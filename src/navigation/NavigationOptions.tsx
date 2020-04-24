@@ -1,4 +1,7 @@
 import theme from '../theme';
+import {Platform} from 'react-native';
+
+const isIos = Platform.OS === 'ios';
 
 export const homeOptions = {
   title: '',
@@ -13,12 +16,22 @@ export const homeOptions = {
 export const tabOptions = {
   activeTintColor: theme.activeTintColor,
   inactiveTintColor: theme.inactiveTintColor,
+  labelStyle: {
+    fontSize: 13,
+  },
   style: {
-    backgroundColor: theme.background,
+    shadowColor: '#000',
     shadowOffset: {
-      height: 0,
+      width: 0,
+      height: 1,
     },
-    elevation: 0,
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    elevation: 50,
+    backgroundColor: '#161819',
+    paddingTop: 5,
+    paddingBottom: isIos ? 35 : 5,
+    height: isIos ? 90 : 60,
     borderTopColor: 'transparent',
   },
 };
@@ -31,8 +44,8 @@ export const actionOptions = {
     fontSize: 30,
   },
   headerStyle: {
+    height: isIos ? 100 : 60,
     backgroundColor: theme.background,
-    height: 100,
     shadowOffset: {
       height: 0,
     },
@@ -48,7 +61,7 @@ export const addOptions = {
   },
   headerStyle: {
     backgroundColor: theme.background,
-    height: 100,
+    height: isIos ? 100 : 60,
     shadowOffset: {
       height: 0,
     },
