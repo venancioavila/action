@@ -13,14 +13,14 @@ cache.writeData({
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://apollotask-server.herokuapp.com/graphql`,
+  uri: `ws://192.168.2.161:4000/graphql`,
   options: {
     reconnect: true,
   },
 });
 
 const httpLink = new HttpLink({
-  uri: 'https://apollotask-server.herokuapp.com/',
+  uri: 'http://192.168.2.161:4000/',
 });
 
 const link = split(

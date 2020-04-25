@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Space from './Space';
 import {ActivityIndicator} from 'react-native';
 import {remove} from '../services/Storage';
+import {useQuery} from '@apollo/react-hooks';
+import DHT from '../queryes/DHT';
 
 const Wrapper = styled.View`
   display: flex;
@@ -40,8 +42,9 @@ const Touchable = styled.TouchableOpacity`
 
 const TextWrapper = styled.View`
   justify-content: center;
-  align-items: center;
-  max-width: 70px;
+  align-items: flex-start;
+  flex-direction: column;
+  min-width: 100px;
 `;
 
 interface Props {
@@ -54,15 +57,14 @@ const DhtItem = ({name, gpio, id}: Props) => {
   const [delet, setDelet] = useState(false);
   const [dht, setDht] = useState<any>(null);
 
-  const onRequestDht = async (pin: number) => {};
+  const {data, loading, refetch, error} = useQuery(DHT, {
+    variables: {pin: parseInt(gpio)},
+    pollInterval: 5000,
+  });
 
   const onDelete = async (id: string) => {
     remove(id);
   };
-
-  useEffect(() => {
-    onRequestDht(gpio);
-  }, []);
 
   const addDelet = () => {
     setDelet(true);
@@ -71,18 +73,22 @@ const DhtItem = ({name, gpio, id}: Props) => {
     }, 5000);
   };
 
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+
   return (
     <Wrapper>
       <Column>
-        {dht ? (
-          <>
+        {!loading ? (
+          <TextWrapper>
             <Text size={20} color={theme.text}>
-              {`${dht.temperature}º C`}
+              {`${data.DHT.temperature}º C`}
             </Text>
             <Text size={20} color={theme.text}>
-              {`${dht.humidity}% U`}
+              {`${data.DHT.humidity}% h`}
             </Text>
-          </>
+          </TextWrapper>
         ) : (
           <ActivityIndicator color={theme.text} />
         )}
@@ -107,7 +113,7 @@ const DhtItem = ({name, gpio, id}: Props) => {
             <Icon color={theme.lightBackground} name="trash-alt" size={30} />
           </Touchable>
         )}
-        <Touchable onPress={() => onRequestDht(gpio)}>
+        <Touchable onPress={() => refetch()}>
           <Icon color={theme.lightBackground} name="redo-alt" size={30} />
         </Touchable>
       </Column>

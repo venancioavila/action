@@ -5,6 +5,9 @@ import theme from '../theme';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Space from './Space';
 import {remove} from '../services/Storage';
+import {useMutation} from '@apollo/react-hooks';
+import {Alert} from 'react-native';
+import DIGITAL from '../mutations/DIGITAL';
 
 const Wrapper = styled.View`
   display: flex;
@@ -62,25 +65,36 @@ interface Props {
   id: string;
 }
 
-const onActive = async (pin: number) => {};
-
-const onDeactive = async (pin: number) => {};
-
 const ActionItem = ({name, gpio, id}: Props) => {
-  const [power, setPower] = useState(false);
   const [delet, setDelet] = useState(false);
+  const [state, setState] = useState(false);
+  const [digital, {loading}] = useMutation(DIGITAL);
 
   const onDelete = async (id: string) => {
     remove(id);
   };
 
-  useEffect(() => {
-    if (power) {
-      onActive(gpio);
-    } else {
-      onDeactive(gpio);
+  const turnOnOff = async (state: number) => {
+    try {
+      const {data}: any = await digital({
+        variables: {
+          pin: parseInt(gpio),
+          state,
+        },
+      });
+      if (data.digital) {
+      }
+    } catch (e) {
+      Alert.alert(
+        'Create error!',
+        `${e}`,
+        [{text: 'OK', onPress: () => null}],
+        {
+          cancelable: false,
+        },
+      );
     }
-  }, [power]);
+  };
 
   const addDelet = () => {
     setDelet(true);
@@ -89,15 +103,20 @@ const ActionItem = ({name, gpio, id}: Props) => {
     }, 5000);
   };
 
+  useEffect(() => {
+    if (state) {
+      turnOnOff(1);
+    } else {
+      turnOnOff(0);
+    }
+  }, [state]);
+
   return (
     <Wrapper>
       <Column>
-        <Button
-          onPress={() => {
-            setPower(!power);
-          }}>
+        <Button onPress={() => setState(!state)}>
           <Icon
-            color={power ? theme.text : theme.background}
+            color={state ? theme.text : theme.background}
             size={40}
             name="lightbulb"
           />
@@ -124,11 +143,11 @@ const ActionItem = ({name, gpio, id}: Props) => {
           </Touchable>
         )}
         <Switch
-          value={power}
+          value={state}
           thumbColor={theme.lightBackground}
           trackColor={{true: theme.text, false: 'green'}}
           // @ts-ignore
-          onChange={() => setPower(!power)}
+          onChange={() => setState(!state)}
         />
       </DeleteWrapper>
     </Wrapper>

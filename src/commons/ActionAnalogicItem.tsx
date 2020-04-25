@@ -4,9 +4,11 @@ import Text from '../commons/Text';
 import theme from '../theme';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Space from './Space';
-import api from '../services/api';
 import Slider from '@react-native-community/slider';
 import {remove} from '../services/Storage';
+import {useMutation} from '@apollo/react-hooks';
+import {Alert} from 'react-native';
+import MODULAR from '../mutations/MODULAR';
 
 const Wrapper = styled.View`
   display: flex;
@@ -64,6 +66,7 @@ const percentage = (partialValue: number, totalValue: number) => {
 };
 
 const ActionItem = ({name, gpio, id}: Props) => {
+  const [modular, {loading}] = useMutation(MODULAR);
   const [delet, setDelet] = useState(false);
   const [value, setValue] = useState(0);
 
@@ -78,7 +81,27 @@ const ActionItem = ({name, gpio, id}: Props) => {
     }, 5000);
   };
 
-  const onAction = async (pwm: number) => {};
+  const onAction = async (pwm: number) => {
+    try {
+      const {data}: any = await modular({
+        variables: {
+          pin: parseInt(gpio),
+          state: pwm,
+        },
+      });
+      if (data.digital) {
+      }
+    } catch (e) {
+      Alert.alert(
+        'Create error!',
+        `${e}`,
+        [{text: 'OK', onPress: () => null}],
+        {
+          cancelable: false,
+        },
+      );
+    }
+  };
 
   return (
     <Wrapper>
