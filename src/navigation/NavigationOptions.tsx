@@ -17,7 +17,7 @@ export const tabOptions = {
   activeTintColor: theme.activeTintColor,
   inactiveTintColor: theme.inactiveTintColor,
   labelStyle: {
-    fontSize: 13,
+    fontSize: 10,
   },
   style: {
     shadowColor: '#000',
@@ -70,6 +70,22 @@ export const addOptions = {
 };
 
 export const gpioOptions = {
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  headerStyle: {
+    backgroundColor: theme.background,
+    height: isIos ? 100 : 60,
+    shadowOffset: {
+      height: 0,
+    },
+    elevation: 0,
+  },
+};
+
+export const settingsOptions = {
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold',

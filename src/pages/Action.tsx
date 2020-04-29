@@ -7,7 +7,6 @@ import FakeActionItem from '../commons/FakeActionItem';
 import DhtItem from '../commons/DhtItem';
 import ActionAnalogicItem from '../commons/ActionAnalogicItem';
 import GamePadItem from '../commons/ServoItem';
-import AddRasp from '../commons/AddRasp';
 import {show} from '../services/Storage';
 import client from '../services/client';
 import {useQuery, useMutation} from '@apollo/react-hooks';
@@ -32,12 +31,10 @@ const RowContent = styled.View`
 `;
 
 const Action = () => {
-  const [openModal, setOpenModal] = useState(false);
   const {data}: any = useQuery(GET_ACTIONS);
 
   return (
     <ActionsWrapper>
-      <AddRasp setIsVisible={() => setOpenModal(false)} isVisible={openModal} />
       <Scroll>
         <RowContent>
           {data.actions.map((item: any) => {

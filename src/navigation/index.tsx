@@ -8,6 +8,7 @@ import {
   actionOptions,
   addOptions,
   gpioOptions,
+  settingsOptions,
 } from './NavigationOptions';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ThemeProvider} from 'styled-components';
@@ -33,19 +34,19 @@ Icon.loadFont();
 changeNavigationBarColor('#80b3ff', true, true);
 
 const ActionIcon = ({activeTintColor}: any) => (
-  <Icon color={activeTintColor} size={30} name="home" />
+  <Icon color={activeTintColor} size={28} name="home" />
 );
 
 const AddIcon = ({activeTintColor}: any) => (
-  <Icon color={activeTintColor} size={30} name="add-circle" />
+  <Icon color={activeTintColor} size={28} name="add-circle" />
 );
 
 const GpioIcon = ({activeTintColor}: any) => (
-  <Icon color={activeTintColor} size={30} name="circle" />
+  <Icon color={activeTintColor} size={28} name="map" />
 );
 
 const SettingsIcon = ({activeTintColor}: any) => (
-  <Icon color={activeTintColor} size={30} name="build" />
+  <Icon color={activeTintColor} size={28} name="build" />
 );
 
 const ActionStack = () => {
@@ -92,6 +93,7 @@ const SettingsStack = () => {
     <Stack.Navigator>
       <Stack.Screen
         // @ts-ignore
+        options={settingsOptions}
         name="Settings"
         component={Settings}
       />
@@ -128,24 +130,24 @@ const Navigation = () => {
           name="Add"
           component={AddActionStack}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
           options={{
             tabBarIcon: ({color}: any) => <GpioIcon activeTintColor={color} />,
-            tabBarLabel: () => null,
+            tabBarLabel: 'Mapa',
           }}
           name="Gpio"
           component={GpioStack}
-        /> */}
-        {/* <Tab.Screen
+        />
+        <Tab.Screen
           options={{
             tabBarIcon: ({color}: any) => (
               <SettingsIcon activeTintColor={color} />
             ),
-            tabBarLabel: 'configurações',
+            tabBarLabel: 'Ajustes',
           }}
           name="Settgins"
           component={SettingsStack}
-        /> */}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
