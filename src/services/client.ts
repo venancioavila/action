@@ -20,7 +20,7 @@ const wsLink = new WebSocketLink({
 })
 
 const httpLink = new HttpLink({
-  uri: 'http://192.168.2.161:4000/',
+  uri: 'http://192.168.2.161:4000/graphql',
 })
 
 const link = split(
