@@ -98,7 +98,7 @@ const GamePadItem = ({ name, gpio, id, isHorizontal }: Props) => {
   return (
     <Wrapper>
       <Text color={theme.text} size={30}>
-        {value}º
+        {value}
       </Text>
       <Slider
         style={{ width: '100%' }}
