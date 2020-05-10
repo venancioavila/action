@@ -1,7 +1,7 @@
-import theme from '../theme';
-import {Platform} from 'react-native';
+import theme from '../theme'
+import { Platform } from 'react-native'
 
-const isIos = Platform.OS === 'ios';
+const isIos = Platform.OS === 'ios'
 
 export const homeOptions = {
   title: '',
@@ -11,7 +11,7 @@ export const homeOptions = {
     },
     elevation: 0,
   },
-};
+}
 
 export const tabOptions = {
   activeTintColor: theme.activeTintColor,
@@ -34,7 +34,7 @@ export const tabOptions = {
     height: isIos ? 90 : 60,
     borderTopColor: 'transparent',
   },
-};
+}
 
 export const actionOptions = {
   title: 'Action',
@@ -51,7 +51,7 @@ export const actionOptions = {
     },
     elevation: 0,
   },
-};
+}
 
 export const addOptions = {
   headerTintColor: '#fff',
@@ -67,7 +67,7 @@ export const addOptions = {
     },
     elevation: 0,
   },
-};
+}
 
 export const gpioOptions = {
   headerTintColor: '#fff',
@@ -83,7 +83,7 @@ export const gpioOptions = {
     },
     elevation: 0,
   },
-};
+}
 
 export const settingsOptions = {
   headerTintColor: '#fff',
@@ -99,4 +99,4 @@ export const settingsOptions = {
     },
     elevation: 0,
   },
-};
+}
