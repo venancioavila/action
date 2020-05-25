@@ -13,7 +13,7 @@ import RASPBERRY from '../queryes/RASPBERRY'
 const Wrapper = styled.View`
   flex: 1;
   background: ${(p) => p.theme.background};
-  padding-horizontal: 20px;
+  padding-horizontal: 10px;
 `
 
 const RowTitle = styled.View`
