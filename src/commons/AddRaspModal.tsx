@@ -60,12 +60,16 @@ const Action = ({ isVisible, setIsVisible }: Props) => {
           Add a raspberry.
         </Text>
         <Space height={30} />
-        <Input value={name} onChangeText={setName} placeholder="Name" />
+        <Input
+          value={name}
+          onChangeText={setName}
+          placeholder="Nome... Ex: PI zero"
+        />
         <Input
           value={ip}
           onChangeText={setIp}
           keyboardType="numeric"
-          placeholder="Raspberry IP"
+          placeholder="IP do raspberry pi"
         />
         {ipValidade && (
           <MessageWrapper>
@@ -77,7 +81,7 @@ const Action = ({ isVisible, setIsVisible }: Props) => {
           value={password}
           secureTextEntry
           onChangeText={setPassword}
-          placeholder="SSH pass"
+          placeholder="SSP pass... Opcional"
         />
         <Space height={30} />
         <Button onPress={() => onSubmit()}>

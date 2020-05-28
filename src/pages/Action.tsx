@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import styled from 'styled-components/native';
-import ActionItem from '../commons/ActionItem';
-import AddActionItem from '../commons/AddActionItem';
-import Scroll from '../commons/Scroll';
-import FakeActionItem from '../commons/FakeActionItem';
-import DhtItem from '../commons/DhtItem';
-import ActionAnalogicItem from '../commons/ActionAnalogicItem';
-import GamePadItem from '../commons/ServoItem';
-import {show} from '../services/Storage';
-import client from '../services/client';
-import {useQuery, useMutation} from '@apollo/react-hooks';
-import GET_ACTIONS from '../queryes/GET_ACTIONS';
-import Text from '../commons/Text';
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components/native'
+import ActionItem from '../commons/ActionItem'
+import AddActionItem from '../commons/AddActionItem'
+import Scroll from '../commons/Scroll'
+import FakeActionItem from '../commons/FakeActionItem'
+import DhtItem from '../commons/DhtItem'
+import ActionAnalogicItem from '../commons/ActionAnalogicItem'
+import GamePadItem from '../commons/ServoItem'
+import { useQuery } from '@apollo/react-hooks'
+import GET_ACTIONS from '../queryes/GET_ACTIONS'
 
 const ActionsWrapper = styled.View`
   flex: 1;
@@ -20,7 +17,7 @@ const ActionsWrapper = styled.View`
   align-items: center;
   flex-wrap: wrap;
   background: ${(p) => p.theme.background};
-`;
+`
 
 const RowContent = styled.View`
   flex-direction: row;
@@ -28,10 +25,10 @@ const RowContent = styled.View`
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
-`;
+`
 
 const Action = () => {
-  const {data}: any = useQuery(GET_ACTIONS);
+  const { data }: any = useQuery(GET_ACTIONS)
 
   return (
     <ActionsWrapper>
@@ -46,7 +43,7 @@ const Action = () => {
                   gpio={item.gpio}
                   key={item.id}
                 />
-              );
+              )
             }
             if (item.type === 'digital') {
               return (
@@ -56,7 +53,7 @@ const Action = () => {
                   gpio={item.gpio}
                   key={item.id}
                 />
-              );
+              )
             }
             if (item.type === 'analogic') {
               return (
@@ -66,7 +63,7 @@ const Action = () => {
                   gpio={item.gpio}
                   key={item.id}
                 />
-              );
+              )
             }
             if (item.type === 'servo') {
               return (
@@ -77,7 +74,7 @@ const Action = () => {
                   key={item.id}
                   isHorizontal
                 />
-              );
+              )
             }
           })}
           <AddActionItem />
@@ -85,7 +82,7 @@ const Action = () => {
         </RowContent>
       </Scroll>
     </ActionsWrapper>
-  );
-};
+  )
+}
 
-export default Action;
+export default Action

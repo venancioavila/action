@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import styled from 'styled-components/native';
-import Text from '../commons/Text';
-import theme from '../theme';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Space from './Space';
-import {remove} from '../services/Storage';
-import {useMutation} from '@apollo/react-hooks';
-import {Alert} from 'react-native';
-import DIGITAL from '../mutations/DIGITAL';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components/native'
+import Text from '../commons/Text'
+import theme from '../theme'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import Space from './Space'
+import { remove } from '../services/Storage'
+import { useMutation } from '@apollo/react-hooks'
+import { Alert } from 'react-native'
+import DIGITAL from '../mutations/DIGITAL'
 
 const Wrapper = styled.View`
   display: flex;
@@ -23,93 +23,93 @@ const Wrapper = styled.View`
   margin: 2%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   elevation: 5;
-`;
+`
 
 const Column = styled.View`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 const DeleteWrapper = styled.View`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
   align-items: flex-end;
-`;
+`
 
 const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   height: 60px;
   width: 60px;
-`;
+`
 
 const Touchable = styled.TouchableOpacity`
   height: 30px;
   width: 30px;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const TextWrapper = styled.View`
   max-width: 80px;
-`;
+`
 
-const Switch = styled.Switch``;
+const Switch = styled.Switch``
 
 interface Props {
-  name: string;
-  gpio: any;
-  id: string;
+  name: string
+  gpio: any
+  id: string
 }
 
-const ActionItem = ({name, gpio, id}: Props) => {
-  const [delet, setDelet] = useState(false);
-  const [state, setState] = useState(false);
-  const [digital, {loading}] = useMutation(DIGITAL);
+const ActionItem = ({ name, gpio, id }: Props) => {
+  const [delet, setDelet] = useState(false)
+  const [state, setState] = useState(false)
+  const [digital, { loading }] = useMutation(DIGITAL)
 
   const onDelete = async (id: string) => {
-    remove(id);
-  };
+    remove(id)
+  }
 
   const turnOnOff = async (state: number) => {
     try {
-      const {data}: any = await digital({
+      const { data }: any = await digital({
         variables: {
           pin: parseInt(gpio),
           state,
         },
-      });
+      })
       if (data.digital) {
       }
     } catch (e) {
       Alert.alert(
-        'Create error!',
-        `${e}`,
-        [{text: 'OK', onPress: () => null}],
+        'Algo deu errado!',
+        'Verifique sua conexão local ou se o ip do seu raspberry está correto.',
+        [{ text: 'OK', onPress: () => null }],
         {
           cancelable: false,
         },
-      );
+      )
     }
-  };
+  }
 
   const addDelet = () => {
-    setDelet(true);
+    setDelet(true)
     setTimeout(() => {
-      setDelet(false);
-    }, 5000);
-  };
+      setDelet(false)
+    }, 5000)
+  }
 
   useEffect(() => {
     if (state) {
-      turnOnOff(1);
+      turnOnOff(1)
     } else {
-      turnOnOff(0);
+      turnOnOff(0)
     }
-  }, [state]);
+  }, [state])
 
   return (
     <Wrapper>
@@ -145,13 +145,13 @@ const ActionItem = ({name, gpio, id}: Props) => {
         <Switch
           value={state}
           thumbColor={theme.lightBackground}
-          trackColor={{true: theme.text, false: 'green'}}
+          trackColor={{ true: theme.text, false: 'green' }}
           // @ts-ignore
           onChange={() => setState(!state)}
         />
       </DeleteWrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default ActionItem;
+export default ActionItem

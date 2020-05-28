@@ -1,53 +1,53 @@
-import React, {useState, useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StatusBar} from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { StatusBar } from 'react-native'
 import {
   tabOptions,
   actionOptions,
   addOptions,
   gpioOptions,
   settingsOptions,
-} from './NavigationOptions';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {ThemeProvider} from 'styled-components';
-import theme from '../theme';
-import {ApolloProvider} from '@apollo/react-hooks';
-import client from '../services/client';
-import {initialState} from '../services/Storage';
+} from './NavigationOptions'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { ThemeProvider } from 'styled-components'
+import theme from '../theme'
+import { ApolloProvider } from '@apollo/react-hooks'
+import client from '../services/client'
+import { initialState } from '../services/Storage'
 import changeNavigationBarColor, {
   hideNavigationBar,
-} from 'react-native-navigation-bar-color';
+} from 'react-native-navigation-bar-color'
 
 // Screens
-import Settings from '../pages/Settings';
-import Action from '../pages/Action';
-import AddAction from '../pages/AddAction';
-import Gpio from '../pages/Gpio';
+import Settings from '../pages/Settings'
+import Action from '../pages/Action'
+import AddAction from '../pages/AddAction'
+import Gpio from '../pages/Gpio'
 
 // Stacks
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
 
-Icon.loadFont();
-changeNavigationBarColor('#80b3ff', true, true);
+Icon.loadFont()
+changeNavigationBarColor('#80b3ff', true, true)
 
-const ActionIcon = ({activeTintColor}: any) => (
+const ActionIcon = ({ activeTintColor }: any) => (
   <Icon color={activeTintColor} size={28} name="home" />
-);
+)
 
-const AddIcon = ({activeTintColor}: any) => (
+const AddIcon = ({ activeTintColor }: any) => (
   <Icon color={activeTintColor} size={28} name="add-circle" />
-);
+)
 
-const GpioIcon = ({activeTintColor}: any) => (
+const GpioIcon = ({ activeTintColor }: any) => (
   <Icon color={activeTintColor} size={28} name="map" />
-);
+)
 
-const SettingsIcon = ({activeTintColor}: any) => (
+const SettingsIcon = ({ activeTintColor }: any) => (
   <Icon color={activeTintColor} size={28} name="build" />
-);
+)
 
 const ActionStack = () => {
   return (
@@ -59,8 +59,8 @@ const ActionStack = () => {
         component={Action}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 const AddActionStack = () => {
   return (
@@ -68,12 +68,12 @@ const AddActionStack = () => {
       <Stack.Screen
         // @ts-ignore
         options={addOptions}
-        name="Create action"
+        name="Criar action"
         component={AddAction}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 const GpioStack = () => {
   return (
@@ -85,8 +85,8 @@ const GpioStack = () => {
         component={Gpio}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 const SettingsStack = () => {
   return (
@@ -98,13 +98,13 @@ const SettingsStack = () => {
         component={Settings}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 const Navigation = () => {
   useEffect(() => {
-    initialState();
-  }, []);
+    initialState()
+  }, [])
 
   return (
     <NavigationContainer>
@@ -114,7 +114,7 @@ const Navigation = () => {
         tabBarOptions={tabOptions}>
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}: any) => (
+            tabBarIcon: ({ color }: any) => (
               <ActionIcon activeTintColor={color} />
             ),
             tabBarLabel: 'Início',
@@ -124,7 +124,7 @@ const Navigation = () => {
         />
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}: any) => <AddIcon activeTintColor={color} />,
+            tabBarIcon: ({ color }: any) => <AddIcon activeTintColor={color} />,
             tabBarLabel: 'Adicionar',
           }}
           name="Add"
@@ -132,7 +132,9 @@ const Navigation = () => {
         />
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}: any) => <GpioIcon activeTintColor={color} />,
+            tabBarIcon: ({ color }: any) => (
+              <GpioIcon activeTintColor={color} />
+            ),
             tabBarLabel: 'Mapa',
           }}
           name="Gpio"
@@ -140,7 +142,7 @@ const Navigation = () => {
         />
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}: any) => (
+            tabBarIcon: ({ color }: any) => (
               <SettingsIcon activeTintColor={color} />
             ),
             tabBarLabel: 'Ajustes',
@@ -150,8 +152,8 @@ const Navigation = () => {
         />
       </Tab.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -159,6 +161,6 @@ const App = () => (
       <Navigation />
     </ThemeProvider>
   </ApolloProvider>
-);
+)
 
-export default App;
+export default App

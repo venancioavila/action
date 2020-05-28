@@ -63,10 +63,32 @@ const Settings = () => {
           {!!raspberry?.raspberry && <RaspItem data={raspberry?.raspberry} />}
           <Space height={20} />
           <AddButon onPress={() => handleModal()}>
-            <Text bold color={theme.background}>
+            <Text bold size={15} color={theme.text}>
               {!!raspberry?.raspberry ? 'Editar' : 'Adicionar'}
             </Text>
           </AddButon>
+        </ActionsWrapper>
+        <Space height={30} />
+        <ActionsWrapper>
+          <RowTitle>
+            <Icon size={15} color="#C51A4A" name="terminal" />
+          </RowTitle>
+          <Space height={20} />
+          <Text bold color="#C51A4A" size={15}>
+            Instalação em seu dispositivo raspberry pi:
+          </Text>
+          <Space height={20} />
+          <Text bold size={15}>
+            $ sudo yarn global add action-server
+          </Text>
+          <Space height={20} />
+          <Text numberOfLines={2} size={15}>
+            Depois de instalado você pode rodar o servidor com o comando:
+          </Text>
+          <Space height={20} />
+          <Text bold size={15}>
+            $ sudo action-server
+          </Text>
         </ActionsWrapper>
       </Scroll>
     </Wrapper>

@@ -93,7 +93,7 @@ export const settingsOptions = {
   },
   headerStyle: {
     backgroundColor: theme.background,
-    height: 100,
+    height: isIos ? 100 : 60,
     shadowOffset: {
       height: 0,
     },

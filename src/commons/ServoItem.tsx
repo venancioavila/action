@@ -74,8 +74,8 @@ const GamePadItem = ({ name, gpio, id, isHorizontal }: Props) => {
       }
     } catch (e) {
       Alert.alert(
-        'Create error!',
-        `${e}`,
+        'Algo deu errado!',
+        'Verifique sua conexão local ou se o ip do seu raspberry está correto.',
         [{ text: 'OK', onPress: () => null }],
         {
           cancelable: false,

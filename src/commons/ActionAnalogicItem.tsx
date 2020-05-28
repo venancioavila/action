@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import styled from 'styled-components/native';
-import Text from '../commons/Text';
-import theme from '../theme';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Space from './Space';
-import Slider from '@react-native-community/slider';
-import {remove} from '../services/Storage';
-import {useMutation} from '@apollo/react-hooks';
-import {Alert} from 'react-native';
-import MODULAR from '../mutations/MODULAR';
+import React, { useState } from 'react'
+import styled from 'styled-components/native'
+import Text from '../commons/Text'
+import theme from '../theme'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import Space from './Space'
+import Slider from '@react-native-community/slider'
+import { remove } from '../services/Storage'
+import { useMutation } from '@apollo/react-hooks'
+import { Alert } from 'react-native'
+import MODULAR from '../mutations/MODULAR'
 
 const Wrapper = styled.View`
   display: flex;
@@ -24,84 +24,84 @@ const Wrapper = styled.View`
   margin: 2%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   elevation: 5;
-`;
+`
 
 const InfoWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-`;
+`
 
 const DeleteWrapper = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-`;
+`
 
 const Touchable = styled.TouchableOpacity`
   height: 30px;
   width: 30px;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const TextWrapper = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   max-width: 70px;
-`;
+`
 
 interface Props {
-  name: string;
-  gpio: any;
-  id: string;
+  name: string
+  gpio: any
+  id: string
 }
 
 const percentage = (partialValue: number, totalValue: number) => {
-  const total: any = (100 * partialValue) / totalValue;
-  return parseInt(total);
-};
+  const total: any = (100 * partialValue) / totalValue
+  return parseInt(total)
+}
 
-const ActionItem = ({name, gpio, id}: Props) => {
-  const [modular, {loading}] = useMutation(MODULAR);
-  const [delet, setDelet] = useState(false);
-  const [value, setValue] = useState(0);
+const ActionItem = ({ name, gpio, id }: Props) => {
+  const [modular, { loading }] = useMutation(MODULAR)
+  const [delet, setDelet] = useState(false)
+  const [value, setValue] = useState(0)
 
   const onDelete = async (id: string) => {
-    remove(id);
-  };
+    remove(id)
+  }
 
   const addDelet = () => {
-    setDelet(true);
+    setDelet(true)
     setTimeout(() => {
-      setDelet(false);
-    }, 5000);
-  };
+      setDelet(false)
+    }, 5000)
+  }
 
   const onAction = async (pwm: number) => {
     try {
-      const {data}: any = await modular({
+      const { data }: any = await modular({
         variables: {
           pin: parseInt(gpio),
           state: pwm,
         },
-      });
+      })
       if (data.digital) {
       }
     } catch (e) {
       Alert.alert(
-        'Create error!',
-        `${e}`,
-        [{text: 'OK', onPress: () => null}],
+        'Algo deu errado!',
+        'Verifique sua conexão local ou se o ip do seu raspberry está correto.',
+        [{ text: 'OK', onPress: () => null }],
         {
           cancelable: false,
         },
-      );
+      )
     }
-  };
+  }
 
   return (
     <Wrapper>
@@ -116,15 +116,15 @@ const ActionItem = ({name, gpio, id}: Props) => {
         </TextWrapper>
       </InfoWrapper>
       <Slider
-        style={{width: '100%', height: 30}}
+        style={{ width: '100%', height: 30 }}
         minimumValue={0}
         maximumValue={255}
         minimumTrackTintColor={theme.text}
         maximumTrackTintColor={theme.background}
         thumbTintColor="#FFFF"
         onValueChange={(e: any) => {
-          onAction(parseInt(e));
-          setValue(parseInt(e));
+          onAction(parseInt(e))
+          setValue(parseInt(e))
         }}
       />
       <DeleteWrapper>
@@ -143,7 +143,7 @@ const ActionItem = ({name, gpio, id}: Props) => {
         )}
       </DeleteWrapper>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default ActionItem;
+export default ActionItem
