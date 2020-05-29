@@ -1,41 +1,41 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import Space from '../commons/Space';
-import Scroll from '../commons/Scroll';
-import Text from '../commons/Text';
-import theme from '../theme';
+import React from 'react'
+import styled from 'styled-components/native'
+import Space from '../commons/Space'
+import Scroll from '../commons/Scroll'
+import Text from '../commons/Text'
+import theme from '../theme'
 
 const RowPinWrapper = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   padding-horizontal: 5px;
-`;
+`
 
 const PinWrapper = styled.View<Styles>`
   width: 48%;
   height: 80px;
-  background: ${p => (p.color ? p.color : p.theme.gpioBackground)};
+  background: ${(p) => (p.color ? p.color : p.theme.gpioBackground)};
   border-radius: 3px;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
   padding-horizontal: 10px;
-`;
+`
 
 const Pin = styled.View`
   width: 60px;
   height: 60px;
   border-radius: 30px;
   background: white;
-  border-color: ${p => p.theme.background};
+  border-color: ${(p) => p.theme.background};
   border-width: 5px;
   align-items: center;
   justify-content: center;
-`;
+`
 
 interface Styles {
-  color?: string;
+  color?: string
 }
 
 const Gpio = () => (
@@ -541,6 +541,6 @@ const Gpio = () => (
     </RowPinWrapper>
     <Space height={10} />
   </Scroll>
-);
+)
 
-export default Gpio;
+export default Gpio

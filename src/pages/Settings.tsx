@@ -26,7 +26,7 @@ const RowTitle = styled.View`
 const AddButon = styled.TouchableOpacity`
   height: 50px;
   width: 100%;
-  background: ${(p) => p.theme.primary};
+  background: ${(p) => p.theme.secundary};
   border-radius: 7px;
   align-items: center;
   justify-content: center;
