@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.actionrasp"
+        applicationId "com.action"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

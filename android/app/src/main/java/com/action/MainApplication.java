@@ -1,4 +1,4 @@
-package com.actionrasp;
+package com.action;
 
 import android.app.Application;
 import android.content.Context;
