@@ -4,8 +4,8 @@
 >
   <item android:drawable="@color/primary" />
   <item
-    android:width="200dp"
-    android:height="200dp"
+    android:width="150dp"
+    android:height="150dp"
     android:drawable="@mipmap/ic_launcher"
     android:gravity="center"
   />

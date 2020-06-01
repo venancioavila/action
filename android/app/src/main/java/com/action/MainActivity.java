@@ -1,4 +1,4 @@
-package com.action;
+package com.actionrasp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
