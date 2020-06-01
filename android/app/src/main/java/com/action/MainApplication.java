@@ -1,4 +1,4 @@
-package com.actionapp;
+package com.raspberryaction;
 
 import android.app.Application;
 import android.content.Context;
