@@ -16,7 +16,7 @@ const Wrapper = styled.View`
   flex-wrap: wrap;
   background: ${(p) => p.theme.background};
   padding-horizontal: 20px;
-  height: 350px;
+  height: 370px;
   border-width: 1px;
   border-color: ${(p) => p.theme.lightBackground};
   border-radius: 7px;

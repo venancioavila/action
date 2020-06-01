@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import styled from 'styled-components/native';
-import Modal from 'react-native-modal';
-import Text from './Text';
-import theme from '../theme';
-import Button from './Button';
-import Space from './Space';
-import Input from './Input';
-import {create} from '../services/Storage';
+import React, { useState } from 'react'
+import styled from 'styled-components/native'
+import Modal from 'react-native-modal'
+import Text from './Text'
+import theme from '../theme'
+import Button from './Button'
+import Space from './Space'
+import Input from './Input'
+import { create } from '../services/Storage'
 
 // @ts-ignore
 const MyModal = styled(Modal).attrs({
@@ -15,7 +15,7 @@ const MyModal = styled(Modal).attrs({
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const ModalContent = styled.View`
   display: flex;
@@ -25,15 +25,17 @@ const ModalContent = styled.View`
   padding: 10px;
   width: 90%;
   height: 300px;
-  background: ${(p) => p.theme.lightBackground};
+  background: ${(p) => p.theme.background};
   border-radius: 7px;
-`;
+  border-width: 1px;
+  border-color: ${(p) => p.theme.lightBackground};
+`
 
 interface Props {
-  active?: boolean;
-  close?: any;
-  onBackdropPress?: any;
-  onBackButtonPress?: any;
+  active?: boolean
+  close?: any
+  onBackdropPress?: any
+  onBackButtonPress?: any
 }
 
 const AddModalDHT = ({
@@ -42,20 +44,20 @@ const AddModalDHT = ({
   onBackdropPress,
   onBackButtonPress,
 }: Props) => {
-  const [name, setName] = useState('');
-  const [gpio, setGpio] = useState('');
-  const [is22, setIs22] = useState(false);
-  const [exist, setExist] = useState(false);
+  const [name, setName] = useState('')
+  const [gpio, setGpio] = useState('')
+  const [is22, setIs22] = useState(false)
+  const [exist, setExist] = useState(false)
 
   const save = async () => {
     create({
       name,
       gpio,
       type: 'dht',
-    });
-  };
+    })
+  }
 
-  const onChangeGpio = async (gpio: any) => {};
+  const onChangeGpio = async (gpio: any) => {}
 
   return (
     <MyModal
@@ -91,8 +93,8 @@ const AddModalDHT = ({
         <Button
           disabled={exist}
           onPress={() => {
-            close();
-            save();
+            close()
+            save()
           }}>
           <Text bold size={20} color={exist ? theme.text : theme.text}>
             Ok
@@ -100,7 +102,7 @@ const AddModalDHT = ({
         </Button>
       </ModalContent>
     </MyModal>
-  );
-};
+  )
+}
 
-export default AddModalDHT;
+export default AddModalDHT
