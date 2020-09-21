@@ -1,4 +1,4 @@
-Aplicação que visa controlar qualquer raspberry em rede.
+Application that aims to control any networked raspberry.
 
 ## Available Scripts
 
