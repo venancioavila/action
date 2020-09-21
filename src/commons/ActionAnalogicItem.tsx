@@ -8,7 +8,7 @@ import Slider from '@react-native-community/slider'
 import { remove } from '../services/Storage'
 import { useMutation } from '@apollo/react-hooks'
 import { Alert } from 'react-native'
-import MODULAR from '../mutations/MODULAR'
+import MODULAR from '../graphql/mutations/MODULAR'
 
 const Wrapper = styled.View`
   display: flex;

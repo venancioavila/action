@@ -7,7 +7,7 @@ import Space from './Space'
 import { remove } from '../services/Storage'
 import { useMutation } from '@apollo/react-hooks'
 import { Alert } from 'react-native'
-import DIGITAL from '../mutations/DIGITAL'
+import DIGITAL from '../graphql/mutations/DIGITAL'
 
 const Wrapper = styled.View`
   display: flex;

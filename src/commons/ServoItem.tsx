@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import Slider from '@react-native-community/slider'
 import { remove } from '../services/Storage'
 import { useMutation } from '@apollo/react-hooks'
-import SERVO from '../mutations/SERVO'
+import SERVO from '../graphql/mutations/SERVO'
 import { Alert } from 'react-native'
 
 const Wrapper = styled.View`

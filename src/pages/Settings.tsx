@@ -8,7 +8,7 @@ import RaspItem from '../commons/RaspItem'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import AddRaspModal from '../commons/AddRaspModal'
 import { useQuery } from '@apollo/react-hooks'
-import RASPBERRY from '../queryes/RASPBERRY'
+import RASPBERRY from '../graphql/queryes/RASPBERRY'
 
 const Wrapper = styled.View`
   flex: 1;

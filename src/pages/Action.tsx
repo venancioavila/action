@@ -8,7 +8,7 @@ import DhtItem from '../commons/DhtItem'
 import ActionAnalogicItem from '../commons/ActionAnalogicItem'
 import GamePadItem from '../commons/ServoItem'
 import { useQuery } from '@apollo/react-hooks'
-import GET_ACTIONS from '../queryes/GET_ACTIONS'
+import GET_ACTIONS from '../graphql/queryes/GET_ACTIONS'
 
 const ActionsWrapper = styled.View`
   flex: 1;
